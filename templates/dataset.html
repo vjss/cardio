@@ -1,0 +1,72 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Dataset Setup | CardioFusion AI{% endblock %}
+{% block breadcrumb %}Data & Setup{% endblock %}
+
+{% block content %}
+
+<div class="page-heading">
+    <div>
+        <span class="eyebrow">DATA SOURCE</span>
+        <h1>Dataset & Setup</h1>
+        <p>
+            Prepare and run the ECG analysis system.
+        </p>
+    </div>
+</div>
+
+<div class="two-col">
+
+    <article class="panel">
+        <span class="eyebrow">OFFICIAL DATASET</span>
+        <h2>PTB-XL v1.0.3</h2>
+
+        <p class="muted">
+            A publicly available 12-lead ECG dataset
+            used for model training and evaluation.
+        </p>
+
+        <a class="btn btn-primary"
+           href="https://physionet.org/content/ptb-xl/1.0.3/"
+           target="_blank"
+           rel="noopener">
+            Open PhysioNet →
+        </a>
+    </article>
+
+    <article class="panel">
+        <span class="eyebrow">REQUIRED FILES</span>
+        <h2>Dataset Contents</h2>
+
+        <pre>ptbxl_database.csv
+scp_statements.csv
+records100/</pre>
+
+        <p class="hint">
+            Keep the original .hea and .dat files
+            inside the records100 subfolders.
+        </p>
+    </article>
+
+</div>
+
+<article class="panel">
+    <span class="eyebrow">WINDOWS / VS CODE</span>
+    <h2>Execution Steps</h2>
+
+    <pre>python -m pip install -r requirements.txt
+
+python train.py
+
+python export_sample.py
+
+python app.py</pre>
+
+    <p class="muted">
+        The dataset should be in the PTB-XL folder
+        alongside CardioFusion_AI_Multipage.
+    </p>
+</article>
+
+{% endblock %}

@@ -1,0 +1,78 @@
+
+{% extends "base.html" %}
+
+{% block title %}Model Performance | CardioFusion AI{% endblock %}
+{% block heading %}Model Performance{% endblock %}
+
+{% block content %}
+
+<div class="page-intro">
+    <div>
+        <span class="eyebrow">MACHINE LEARNING EVALUATION</span>
+        <h1>Model Performance</h1>
+        <p>Evaluation results from the held-out PTB-XL test recordings.</p>
+    </div>
+    <span class="subtle-tag">Test Set Evaluation</span>
+</div>
+
+<div id="metrics-notice" class="disclaimer">
+    Loading model evaluation results...
+</div>
+
+<div id="metrics-content" hidden>
+    <div class="stats three">
+        <div class="stat-card">
+            <span>TRAINING RECORDS</span>
+            <strong id="train-records">—</strong>
+            <small>Training folds</small>
+        </div>
+        <div class="stat-card">
+            <span>VALIDATION RECORDS</span>
+            <strong id="validation-records">—</strong>
+            <small>Model selection</small>
+        </div>
+        <div class="stat-card">
+            <span>TEST RECORDS</span>
+            <strong id="test-records">—</strong>
+            <small>Held-out evaluation</small>
+        </div>
+    </div>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">COMPARISON</span>
+                <h3>Model Evaluation Results</h3>
+            </div>
+        </div>
+
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Macro F1</th>
+                        <th>Macro AUROC</th>
+                    </tr>
+                </thead>
+                <tbody id="metrics-rows"></tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">PERFORMANCE COMPARISON</span>
+                <h3>Macro F1 by Model</h3>
+            </div>
+        </div>
+        <div id="performance-bars"></div>
+    </section>
+</div>
+
+<div class="disclaimer">
+    These metrics describe diagnostic classification performance on the evaluation dataset, not clinical validation.
+</div>
+
+{% endblock %}

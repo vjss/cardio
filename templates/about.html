@@ -1,0 +1,82 @@
+
+{% extends "base.html" %}
+
+{% block title %}About Project | CardioFusion AI{% endblock %}
+{% block heading %}About Project{% endblock %}
+
+{% block content %}
+
+<div class="page-intro">
+    <div>
+        <span class="eyebrow">ABOUT THE PLATFORM</span>
+        <h1>About CardioFusion AI</h1>
+        <p>Quality-aware ECG and clinical data fusion for cardiovascular diagnostic classification.</p>
+    </div>
+</div>
+
+<section class="panel about-banner">
+    <span class="eyebrow">PROJECT OVERVIEW</span>
+    <h2>Intelligent ECG Analysis Through Multimodal Machine Learning</h2>
+    <p>
+        CardioFusion AI combines 12-lead ECG signals with available
+        patient metadata to support automated classification of
+        cardiovascular diagnostic categories. The platform uses
+        signal feature extraction, separate ECG and clinical
+        models, and quality-aware fusion to produce diagnostic scores.
+    </p>
+</section>
+
+<div class="about-grid">
+    <section class="panel">
+        <div class="feature-circle">♡</div>
+        <h3>ECG Signal Analysis</h3>
+        <p>Processes ECG waveforms and extracts statistical signal characteristics.</p>
+    </section>
+    <section class="panel">
+        <div class="feature-circle">▤</div>
+        <h3>Clinical Information</h3>
+        <p>Incorporates available age, sex, height and weight information.</p>
+    </section>
+    <section class="panel">
+        <div class="feature-circle">◈</div>
+        <h3>Quality-Aware Fusion</h3>
+        <p>Combines branch predictions using signal quality and metadata completeness.</p>
+    </section>
+    <section class="panel">
+        <div class="feature-circle">▥</div>
+        <h3>Model Evaluation</h3>
+        <p>Reports macro F1 and AUROC using held-out PTB-XL recordings.</p>
+    </section>
+</div>
+
+<section class="panel">
+    <span class="eyebrow">DATA SOURCE</span>
+    <h3>PTB-XL ECG Dataset</h3>
+    <p class="about-text">
+        The platform uses PTB-XL, a publicly available collection
+        of 12-lead clinical ECG recordings. The current implementation
+        uses 100 Hz ECG waveforms and available metadata.
+    </p>
+    <a class="text-link" href="https://physionet.org/content/ptb-xl/1.0.3/"
+       target="_blank" rel="noopener">View official PTB-XL dataset →</a>
+</section>
+
+<section class="panel">
+    <span class="eyebrow">PREDICTION CATEGORIES</span>
+    <h3>Five Diagnostic Superclasses</h3>
+    <div class="diagnosis-grid">
+        <div class="diagnosis"><b>NORM</b><span>Normal ECG</span></div>
+        <div class="diagnosis"><b>MI</b><span>Myocardial Infarction</span></div>
+        <div class="diagnosis"><b>STTC</b><span>ST/T Changes</span></div>
+        <div class="diagnosis"><b>CD</b><span>Conduction Disturbance</span></div>
+        <div class="diagnosis"><b>HYP</b><span>Hypertrophy</span></div>
+    </div>
+</section>
+
+<div class="disclaimer">
+    CardioFusion AI is a research prototype for ECG diagnostic classification.
+    It does not predict future cardiovascular events and is not a substitute
+    for professional medical assessment.
+</div>
+
+{% endblock %}

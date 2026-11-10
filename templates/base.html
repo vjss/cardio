@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}CardioFusion AI{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="app">
+
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="/dashboard">
+            <span class="brand-symbol">♥</span>
+            <span>
+                <strong>CardioFusion</strong>
+                <small>AI DIAGNOSTIC PLATFORM</small>
+            </span>
+        </a>
+
+        <p class="nav-caption">MAIN MENU</p>
+
+        <nav class="navigation">
+            <a href="/dashboard" class="nav-item {% if active == 'dashboard' %}active{% endif %}">
+                <span>▦</span> Dashboard
+            </a>
+            <a href="/prediction" class="nav-item {% if active == 'prediction' %}active{% endif %}">
+                <span>♡</span> ECG Analysis
+            </a>
+            <a href="/models" class="nav-item {% if active == 'models' %}active{% endif %}">
+                <span>▥</span> Model Performance
+            </a>
+            <a href="/about" class="nav-item {% if active == 'about' %}active{% endif %}">
+                <span>ⓘ</span> About Project
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <span class="live-dot"></span>
+            <span id="side-status">Checking model...</span>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="menu-button" id="menu-button" aria-label="Toggle menu">☰</button>
+                <span class="topbar-title">{% block heading %}Dashboard{% endblock %}</span>
+            </div>
+
+            <div class="topbar-right">
+                <span class="header-tag">PTB-XL</span>
+                <span class="header-tag">12-Lead ECG</span>
+                <span class="status-pill" id="top-status">Checking...</span>
+            </div>
+        </header>
+
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="footer">
+            <span>♥ <strong>CardioFusion AI</strong> · ECG Intelligence Platform</span>
+            <span>© <span id="year">2026</span> CardioFusion AI. All rights reserved.</span>
+        </footer>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

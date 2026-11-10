@@ -1,0 +1,157 @@
+
+{% extends "base.html" %}
+
+{% block title %}ECG Analysis | CardioFusion AI{% endblock %}
+{% block heading %}ECG Analysis{% endblock %}
+
+{% block content %}
+
+<div class="page-intro">
+    <div>
+        <span class="eyebrow">DIAGNOSTIC ANALYSIS</span>
+        <h1>ECG Signal Analysis</h1>
+        <p>Upload a 12-lead ECG recording and analyze it using the trained multimodal model.</p>
+    </div>
+</div>
+
+<form id="ecg-form" class="analysis-grid">
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">STEP 01</span>
+                <h3>Upload ECG Recording</h3>
+            </div>
+        </div>
+
+        <label class="upload-zone" for="ecg-file">
+            <span class="upload-symbol">↑</span>
+            <strong id="selected-file">Choose an ECG CSV file</strong>
+            <span>1000 rows × 12 columns · Numeric values · No header</span>
+            <span class="button secondary">Browse Files</span>
+            <input id="ecg-file" name="ecg" type="file" accept=".csv" required hidden>
+        </label>
+
+        <div class="upload-help">
+            <b>Supported format</b>
+            <p>10-second, 100 Hz, 12-lead ECG recording in CSV format. Maximum file size: 2 MB.</p>
+        </div>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">STEP 02</span>
+                <h3>Patient Information</h3>
+            </div>
+        </div>
+
+        <p class="muted small">Enter the available clinical metadata for the recording.</p>
+
+        <div class="form-grid">
+            <label>Age (years)
+                <input name="age" type="number" min="0" max="110" placeholder="e.g. 45">
+            </label>
+            <label>Sex
+                <select name="sex">
+                    <option value="">Select</option>
+                    <option value="0">Female</option>
+                    <option value="1">Male</option>
+                </select>
+            </label>
+            <label>Height (cm)
+                <input name="height" type="number" min="1" max="250" step="any" placeholder="e.g. 170">
+            </label>
+            <label>Weight (kg)
+                <input name="weight" type="number" min="1" max="400" step="any" placeholder="e.g. 70">
+            </label>
+        </div>
+
+        <button type="submit" id="analyze-btn" class="button primary full">
+            Analyze ECG →
+        </button>
+        <div class="error-message" id="analysis-error" role="alert" hidden></div>
+    </section>
+
+</form>
+
+<section id="results" hidden>
+    <div class="section-title">
+        <div>
+            <span class="eyebrow">ANALYSIS COMPLETE</span>
+            <h2>ECG Analysis Results</h2>
+        </div>
+    </div>
+
+    <div class="stats three">
+        <div class="stat-card">
+            <span>ECG QUALITY INDICATOR</span>
+            <strong id="result-quality">—</strong>
+            <small>Signal-quality proxy</small>
+        </div>
+        <div class="stat-card">
+            <span>METADATA COMPLETENESS</span>
+            <strong id="result-completeness">—</strong>
+            <small>Available clinical fields</small>
+        </div>
+        <div class="stat-card">
+            <span>AVERAGE ECG FUSION WEIGHT</span>
+            <strong id="result-weight">—</strong>
+            <small>Contribution to fusion output</small>
+        </div>
+    </div>
+
+    <div class="dashboard-grid">
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <span class="eyebrow">RECORDED SIGNAL</span>
+                    <h3>ECG Waveform — Lead II</h3>
+                </div>
+            </div>
+            <canvas id="result-wave" class="ecg-canvas" width="900" height="300"></canvas>
+        </section>
+
+        <section class="panel">
+            <div class="panel-header">
+                <div>
+                    <span class="eyebrow">MODEL OUTPUT</span>
+                    <h3>Diagnostic Class Scores</h3>
+                </div>
+            </div>
+            <div id="prediction-summary" class="result-summary"></div>
+            <div id="score-bars"></div>
+        </section>
+    </div>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">COMPARATIVE RESULTS</span>
+                <h3>Prediction Breakdown</h3>
+            </div>
+        </div>
+
+        <div class="table-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Diagnostic Group</th>
+                        <th>ECG Model</th>
+                        <th>Clinical Model</th>
+                        <th>Fixed Fusion</th>
+                        <th>Quality Fusion</th>
+                    </tr>
+                </thead>
+                <tbody id="prediction-rows"></tbody>
+            </table>
+        </div>
+        <p class="muted small">Model scores are not calibrated medical probabilities or future-event risk estimates.</p>
+    </section>
+</section>
+
+<div class="disclaimer">
+    This research prototype is not intended for clinical diagnosis or medical decision-making.
+</div>
+
+{% endblock %}

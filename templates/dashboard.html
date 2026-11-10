@@ -1,0 +1,120 @@
+
+{% extends "base.html" %}
+
+{% block title %}Dashboard | CardioFusion AI{% endblock %}
+{% block heading %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="page-intro">
+    <div>
+        <span class="eyebrow">CARDIOVASCULAR INTELLIGENCE</span>
+        <h1>ECG Analysis Dashboard</h1>
+        <p>Explore ECG signals, analyze diagnostic patterns and review machine-learning performance.</p>
+    </div>
+    <a href="/prediction" class="button primary">+ New ECG Analysis</a>
+</div>
+
+<section class="hero">
+    <div class="hero-content">
+        <span class="hero-label">INTELLIGENT ECG CLASSIFICATION</span>
+        <h2>Advanced ECG Analysis<br>with Multimodal AI</h2>
+        <p>
+            Combine 12-lead ECG signals and available patient metadata
+            to explore quality-aware diagnostic predictions.
+        </p>
+        <a href="/prediction" class="button hero-button">Analyze ECG <span>→</span></a>
+    </div>
+    <div class="hero-graphic" aria-hidden="true">
+        <svg viewBox="0 0 480 200">
+            <path d="M0 110 H55 Q65 94 75 110 H100 L115 125 L133 20 L150 175 L169 110 H213 Q232 75 250 110 H292 Q302 94 312 110 H337 L352 125 L370 20 L387 175 L406 110 H480"
+                fill="none" stroke="#60e8d4" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+    </div>
+</section>
+
+<div class="stats">
+    <div class="stat-card">
+        <div class="stat-icon">♡</div>
+        <span>ECG LEADS</span>
+        <strong>12</strong>
+        <small>Standard 12-lead recordings</small>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">◷</div>
+        <span>RECORDING DURATION</span>
+        <strong>10 sec</strong>
+        <small>100 Hz sampling frequency</small>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">▥</div>
+        <span>DIAGNOSTIC GROUPS</span>
+        <strong>5</strong>
+        <small>Multi-label classification</small>
+    </div>
+    <div class="stat-card">
+        <div class="stat-icon">✓</div>
+        <span>MODEL STATUS</span>
+        <strong id="dashboard-status">Checking</strong>
+        <small>Current backend status</small>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">SIGNAL VISUALIZATION</span>
+                <h3>ECG Waveform Preview</h3>
+            </div>
+            <span class="subtle-tag">Lead II · Demo</span>
+        </div>
+        <canvas id="dashboard-wave" class="ecg-canvas" width="900" height="300"></canvas>
+        <p class="muted small">
+            Illustrative ECG waveform. Upload a recording to visualize actual signal data.
+        </p>
+    </section>
+
+    <section class="panel">
+        <div class="panel-header">
+            <div>
+                <span class="eyebrow">EVALUATION</span>
+                <h3>Model Performance</h3>
+            </div>
+        </div>
+
+        <div class="metric-row">
+            <span>Macro F1 Score</span>
+            <strong id="dashboard-f1">—</strong>
+        </div>
+        <div class="metric-row">
+            <span>Macro AUROC</span>
+            <strong id="dashboard-auroc">—</strong>
+        </div>
+        <div class="metric-row">
+            <span>Test Recordings</span>
+            <strong id="dashboard-tests">—</strong>
+        </div>
+
+        <a href="/models" class="text-link">Explore model evaluation →</a>
+    </section>
+</div>
+
+<section class="panel">
+    <div class="panel-header">
+        <div>
+            <span class="eyebrow">CLASSIFICATION</span>
+            <h3>Diagnostic Categories</h3>
+        </div>
+    </div>
+
+    <div class="diagnosis-grid">
+        <div class="diagnosis"><b>NORM</b><span>Normal ECG</span></div>
+        <div class="diagnosis"><b>MI</b><span>Myocardial Infarction</span></div>
+        <div class="diagnosis"><b>STTC</b><span>ST/T Changes</span></div>
+        <div class="diagnosis"><b>CD</b><span>Conduction Disturbance</span></div>
+        <div class="diagnosis"><b>HYP</b><span>Hypertrophy</span></div>
+    </div>
+</section>
+
+{% endblock %}
